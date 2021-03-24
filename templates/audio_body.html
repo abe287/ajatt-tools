@@ -3,7 +3,7 @@
     <tr>
       <td>{{ x + 1 }}</td>
       <td>{{ audio_objects[x]['website'] }}</td>
-      <td>{{ audio_objects[x]['link'] }}</td>
+      <td>{{ audio_objects[x]['link']|truncate(55) }}</td>
       <td>{{ audio_objects[x]['date'] }}</td>
 
       <td>
