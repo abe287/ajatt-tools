@@ -1,0 +1,111 @@
+<div class="page-content">
+
+    <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
+      <div>
+        <h4 class="mb-3 mb-md-0">Video</h4>
+      </div>
+      <div class="d-flex align-items-center flex-wrap text-nowrap">
+        <button data-toggle="modal" data-target="#exampleModal" type="button" class="btn btn-primary btn-icon-text mb-2 mb-md-0">
+          <i class="btn-icon-prepend" data-feather="download-cloud"></i>
+          Paste Links
+        </button>
+
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Download Links</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                  <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Link(s):</label>
+                    <textarea style="height: 15rem;" name="links" type="text" class="form-control" id="num-enteries"></textarea>
+                  </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button id="add_video_links" class="btn btn-primary" data-dismiss="modal">Add Links</button>
+                    </div>
+               </div>
+              
+
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-7 col-xl-12 stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-baseline mb-2">
+              <h6 class="card-title mb-0">Video Downloads</h6>
+            </div>
+            <br>
+            <div class="table-responsive">
+              <table class="table table-hover mb-0">
+                <thead>
+                  <tr>
+                    <th class="pt-0">#</th>
+                    <th class="pt-0">Website</th>
+                    <th class="pt-0">Link</th>
+                    <th class="pt-0">Date</th>
+                    <th class="pt-0">Status</th>
+                    <th class="pt-0">Actions</th> <!-- Open Folder, delete -->
+                  </tr>
+                </thead>
+                <tbody id="video_body">
+                  {% for x in range(video_objects|length) %}
+                  <tr>
+                    <td>{{ x + 1 }}</td>
+                    <td>{{ video_objects[x]['website'] }}</td>
+                    <td>{{ video_objects[x]['link'] }}</td>
+                    <td>{{ video_objects[x]['date'] }}</td>
+
+                    <td>
+                      {% if video_objects[x]['status'] == 'Complete' %}
+                      <span class="badge badge-success">{{ video_objects[x]['status'] }}</span>
+                      {% elif video_objects[x]['status'] == 'Idle' %}
+                      <span class="badge badge-danger">{{ video_objects[x]['status'] }}</span>
+                      {% elif video_objects[x]['status'] == 'Downloading' %}
+                      <span class="badge badge-primary">{{ video_objects[x]['status'] }}</span>
+                      {% endif %}
+                    </td>
+
+                    <td>
+                      {% if video_objects[x]['status'] == 'Idle' or video_objects[x]['status'] == 'Complete' %}
+                      <a href="#" style="color:white;" id="start_video_download" task_id="{{ video_objects[x]['_id'] }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                      </a>
+                      {% else %}
+                      <a href="#" style="color:white;" id="stop_video_download" task_id="{{ video_objects[x]['_id'] }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect></svg>
+                      </a>
+                      {% endif %}
+                      <a href="#" style="color:white;" id="open_video_file" task_id="{{ video_objects[x]['_id'] }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-folder"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                      </a>
+                      <a href="#" style="color:white;" id="delete_video_task" task_id="{{ video_objects[x]['_id'] }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
+                      </a>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div> 
+        </div>
+      </div>
+    </div> <!-- row -->
+        
+    <script src="{{ url_for('static', filename='assets/js/template.js') }}"></script>
+
+</div>

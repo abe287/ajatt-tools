@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>AJATT</title>
+	<!-- core:css -->
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/vendors/core/core.css') }}">
+	<!-- endinject -->
+  <!-- plugin css for this page -->
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css') }}">
+	<!-- end plugin css for this page -->
+	<!-- inject:css -->
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/fonts/feather-font/css/iconfont.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/vendors/flag-icon-css/css/flag-icon.min.css') }}">
+	<!-- endinject -->
+  <!-- Layout styles -->  
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/css/demo_2/style.css') }}">
+  <!-- End layout styles -->
+  <!-- Sweet Alerts -->  
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/vendors/sweetalert2/sweetalert2.min.css') }}">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/css/custom.css') }}">
+
+</head>
+
+<body>
+	<div class="main-wrapper">
+
+		<!-- partial:partials/_sidebar.html -->
+		<nav class="sidebar">
+      <div class="sidebar-header">
+        <a href="#" class="sidebar-brand">
+          AJATT<span>IO</span>
+        </a>
+
+      </div>
+      <div class="sidebar-body">
+        <ul class="nav">
+
+          <li class="nav-item nav-category">Download</li>
+          <li class="nav-item">
+            <a href="#" id="load_audio" class="nav-link">
+              <i class="link-icon" data-feather="music"></i>
+              <span class="link-title">Audio</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" id="load_video" class="nav-link">
+              <i class="link-icon" data-feather="tv"></i>
+              <span class="link-title">Video</span>
+            </a>
+          </li>
+
+          <li class="nav-item nav-category">Settings</li>
+          <li class="nav-item">
+            <a href="#" id="load_settings" class="nav-link">
+              <i class="link-icon" data-feather="settings"></i>
+              <span class="link-title">Settings</span>
+            </a>
+          </li>
+
+          <li class="nav-item nav-category">Docs</li>
+          <li class="nav-item">
+            <a href="https://github.com/abe287/ajatt-tools" target="_blank" class="nav-link">
+              <i class="link-icon" data-feather="hash"></i>
+              <span class="link-title">Documentation</span>
+            </a>
+          </li>
+
+        </ul>
+      </div>
+
+    </nav>
+
+		<!-- partial -->
+	
+		<div class="page-wrapper">
+					
+			<!-- partial:partials/_navbar.html -->
+			<nav class="navbar pywebview-drag-region">
+        <div id="title-bar">
+					<div id="title-bar-btns">
+						<button id="min-btn" type="button" class="btn-warning btn-circle-menu" onclick="this.blur();"></button>
+						<button id="max-btn" type="button" class="btn-success btn-circle-menu" onclick="this.blur();"></button>
+						<button id="close-btn" type="button" class="btn-danger btn-circle-menu" onclick="this.blur();"></button>
+					</div>
+				</div>
+				<a href="#" class="sidebar-toggler">
+					<i data-feather="menu"></i>
+				</a>
+			</nav>
+			<!-- partial -->
+
+			<div class="page-content">
+
+			</div>
+		
+		</div>
+	</div>
+
+	<!-- core:js -->
+	<script src="{{ url_for('static', filename='assets/vendors/core/core.js') }}"></script>
+	<!-- endinject -->
+  <!-- plugin js for this page -->
+  <script src="{{ url_for('static', filename='assets/vendors/chartjs/Chart.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='assets/vendors/jquery.flot/jquery.flot.js') }}"></script>
+  <script src="{{ url_for('static', filename='assets/vendors/jquery.flot/jquery.flot.resize.js') }}"></script>
+  <script src="{{ url_for('static', filename='assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='assets/vendors/apexcharts/apexcharts.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='assets/vendors/progressbar.js/progressbar.min.js') }}"></script>
+	<!-- end plugin js for this page -->
+	<!-- inject:js -->
+  <script src="{{ url_for('static', filename='assets/vendors/feather-icons/feather.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='assets/js/template.js') }}"></script>
+	<!-- endinject -->
+  
+  <script src="{{ url_for('static', filename='assets/js/dashboard.js') }}"></script>
+  <script src="{{ url_for('static', filename='assets/js/datepicker.js') }}"></script>
+
+  <!-- sweetalerts -->
+  <script src="{{ url_for('static', filename='assets/vendors/sweetalert2/sweetalert2.min.js') }}"></script>
+  <!-- custom js for this page -->
+  <script src="{{ url_for('static', filename='assets/js/title-bar.js') }}"></script>
+  <script src="{{ url_for('static', filename='assets/js/audio.js') }}"></script>
+  <script src="{{ url_for('static', filename='assets/js/video.js') }}"></script>
+  <script src="{{ url_for('static', filename='assets/js/renderer.js') }}"></script>
+  <script src="{{ url_for('static', filename='assets/js/settings.js') }}"></script>
+  <script src="{{ url_for('static', filename='assets/js/background.js') }}"></script>
+	<!-- end custom js for this page -->
+</body>
+</html>    
