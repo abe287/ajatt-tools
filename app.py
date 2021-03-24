@@ -257,6 +257,32 @@ def get_progress():
 @app.route('/close_window', methods=["POST"])
 def close_window():
     #Add logic to kill all running processes (tasks) before closing
+    audio_tasks = list(db.audio.find())
+    video_tasks = list(db.video.find())
+
+    for task in audio_tasks:
+        if task['status'] == "Downloading":
+            process_id = task['process_id']
+            task_id = task['_id']
+
+            #Kill process
+            process = psutil.Process(process_id)
+            process.terminate()
+
+            #Update databse
+            db.audio.update({"_id":task_id}, {"status": "Idle"})
+    
+    for task in video_tasks:
+        if task['status'] == "Downloading":
+            process_id = task['process_id']
+            task_id = task['_id']
+
+            #Kill process
+            process = psutil.Process(process_id)
+            process.terminate()
+
+            #Update databse
+            db.video.update({"_id":task_id}, {"status": "Idle"})
 
     #Close window after stoping all tasks
     window.destroy()
